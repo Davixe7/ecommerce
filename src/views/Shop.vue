@@ -1,12 +1,9 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useProductStore } from '../stores/products';
-const store = useProductStore()
-onMounted(()=>store.fetchProducts())
+import ProductList from './../components/ProductsList.vue'
 </script>
 
 <template>
   <div id="shop">
-    Shop
+    <ProductList />
   </div>
 </template>
