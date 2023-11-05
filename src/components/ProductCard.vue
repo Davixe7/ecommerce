@@ -1,7 +1,11 @@
 <script setup>
 import Card from 'primevue/card';
 import Button from 'primevue/button';
+import Rating from 'primevue/rating';
 
+import { useCartStore } from '../stores/cart';
+
+const store = useCartStore()
 const props = defineProps(['product'])
 </script>
 
@@ -25,6 +29,19 @@ const props = defineProps(['product'])
     <template #content></template>
 
     <template #footer>
+      <Button
+        v-if="!store.inCart(product)"
+        label="Add to cart"
+        class="w-full flex"
+        icon="pi pi-shopping-cart" outlined>
+      </Button>
+      <Button
+        v-else
+        label="View in cart"
+        class="w-full flex"
+        icon="pi pi-shopping-cart" outlined
+        @click="$router.push('/cart')">
+      </Button>
     </template>
   </Card>
 </template>
