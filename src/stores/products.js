@@ -8,10 +8,19 @@ export const useProductStore = defineStore('products', () => {
   const selectedCategory = ref('')
   const errors           = ref([])
   const fetching         = ref(false)
+  const search           = ref('')
+
+  const searchResults = computed(()=>{
+    let query   = String(search.value).toLowerCase()
+
+    return search.value == '' 
+            ? [...products.value]
+            : products.value.filter(needle => needle.title.toLowerCase().includes(query))
+  })
 
   function setCategory(category){
     this.selectedCategory = category;
-    this.fetchProducts()
+    this.fetchProducts().then(()=>this.search = '')
   }
 
   async function fetchProducts(){
@@ -41,6 +50,8 @@ export const useProductStore = defineStore('products', () => {
     selectedCategory,
     setCategory,
     fetchCategories,
-    errors,
+    search,
+    searchResults,
+    errors
   }
 })

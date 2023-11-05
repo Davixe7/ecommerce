@@ -21,7 +21,7 @@ onMounted(() => store.fetchProducts())
     <CategoriesList/>
     <div class="grid">
       <div
-        v-for="product in store.products"
+        v-for="product in store.searchResults"
         :key="product.id"
         class="col-12 md:col-3 sm:col-4">
         <ProductCard
