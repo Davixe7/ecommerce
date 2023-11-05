@@ -5,9 +5,10 @@ import { useProductStore } from './../stores/products'
 import Dialog      from 'primevue/dialog';
 import Button      from 'primevue/button';
 
-import ProductCard from './ProductCard.vue';
-import ProductDialog from './ProductDialog.vue';
-import CategoriesList from './CategoriesList.vue';
+import ProductCard        from './ProductCard.vue';
+import ProductDialog      from './ProductDialog.vue';
+import CategoriesList     from './CategoriesList.vue';
+import ProductListToolbar from './ProductListToolbar.vue';
 
 const store           = useProductStore()
 const selectedProduct = ref(null)
@@ -19,6 +20,7 @@ onMounted(() => store.fetchProducts())
 <template>
   <div id="products-list">
     <CategoriesList/>
+    <ProductListToolbar/>
     <div class="grid">
       <div
         v-for="product in store.searchResults"

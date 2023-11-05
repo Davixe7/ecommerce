@@ -9,13 +9,17 @@ export const useProductStore = defineStore('products', () => {
   const errors           = ref([])
   const fetching         = ref(false)
   const search           = ref('')
+  const orderBy          = ref({code: 'rating', sort: 1})
 
   const searchResults = computed(()=>{
+    let results = []
     let query   = String(search.value).toLowerCase()
 
-    return search.value == '' 
+    results = search.value == '' 
             ? [...products.value]
             : products.value.filter(needle => needle.title.toLowerCase().includes(query))
+
+    return results.sort((a,b) => (a[orderBy.value.code] - b[orderBy.value.code]) * orderBy.value.sort )
   })
 
   function setCategory(category){
@@ -52,6 +56,7 @@ export const useProductStore = defineStore('products', () => {
     fetchCategories,
     search,
     searchResults,
-    errors
+    errors,
+    orderBy
   }
 })
