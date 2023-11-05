@@ -1,8 +1,15 @@
 <script setup>
   import Card   from 'primevue/card'
   import Button from 'primevue/button'
+  import InputText from 'primevue/inputtext'
+  import { ref } from 'vue';
+  import {useCartStore} from './../stores/cart'
+  import { useRouter } from 'vue-router';
 
+  const router   = useRouter()
+  const store    = useCartStore();
   const props    = defineProps(['product'])
+  const quantity = ref(0)
 </script>
 <template>
   <Card class="product-card">
@@ -34,6 +41,34 @@
     </template>
 
     <template #footer>
+      <template v-if="!store.inCart(product)">
+        <div class="grid flex-nowrap">
+          <div class="col-fixed w-min"><Button icon="pi pi-minus" :disabled="!quantity" @click="quantity--"></Button></div>
+          <div class="col"><InputText class="text-center w-full" v-model="quantity"></InputText></div>
+          <div class="col-fixed w-min"><Button icon="pi pi-plus" @click="quantity++"></Button></div>
+        </div>
+        <Button
+          :disabled="!quantity"
+          @click="store.addProduct(product, quantity)"
+          label="Add to cart"
+          class="w-full"
+          icon="pi pi-shopping-cart">
+        </Button>
+      </template>
+      <template v-else>
+        <div class="flex justify-content-between">
+          <Button
+            @click="router.push('/cart')"
+            label="Go to cart"
+            icon="pi pi-shopping-cart"
+            outlined>
+          </Button>
+          <Button
+            @click="$emit('close')"
+            label="Keep shopping">
+          </Button>
+        </div>
+      </template>
     </template>
   </Card>
 </template>
