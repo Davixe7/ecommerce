@@ -7,6 +7,7 @@ import Button      from 'primevue/button';
 
 import ProductCard from './ProductCard.vue';
 import ProductDialog from './ProductDialog.vue';
+import CategoriesList from './CategoriesList.vue';
 
 const store           = useProductStore()
 const selectedProduct = ref(null)
@@ -17,6 +18,7 @@ onMounted(() => store.fetchProducts())
 
 <template>
   <div id="products-list">
+    <CategoriesList/>
     <div class="grid">
       <div
         v-for="product in store.products"
