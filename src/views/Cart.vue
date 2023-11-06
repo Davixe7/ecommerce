@@ -11,7 +11,7 @@ import { useToast } from 'primevue/usetoast';
 import Toast        from 'primevue/toast';
 const toast = useToast();
 const showSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Listo', detail: 'Se eliminó el producto del carrito', life: 3000 });
+  toast.add({ severity: 'success', summary: 'Ready', detail: 'Product removed from cart', life: 3000 });
 };
 
 const store          = useCartStore()

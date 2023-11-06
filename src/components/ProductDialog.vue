@@ -11,7 +11,7 @@
   const toast = useToast();
 
   const showSuccess = () => {
-    toast.add({ severity: 'success', summary: 'Listo', detail: 'Se agregó el producto al carrito', life: 3000 });
+    toast.add({ severity: 'success', summary: 'Success', detail: 'Product removed from cart', life: 3000 });
   };
 
   const router   = useRouter()
