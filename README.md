@@ -1,35 +1,19 @@
-# test
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+# VueJS Developer Test
+### Pagina de Productos
+- Listar productos
+- Buscar productos por nombre
+- Filtrar productos por categoría
+- Ordenar por precio o calificación, ascendente o descendente
+### Pagina de Carrito
+- Agregar productos al carrito
+- Eliminar productos del carrito
+- Ver cantidades y precio total
+### Herramientas
+- Pinia (manejador de estados por defecto / recomendado de Vue)
+- PrimeVue y PrimeFlex libreria de componentes estilizados
+### Puede mejorar
+- Agregar animaciones
+- Lazy loading o paginación
+- Dark Mode / Modo Oscuro
+- Optimizar estilos para mobile
+- Pruebas unitarias
