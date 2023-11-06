@@ -1,8 +1,17 @@
+<script setup>
+  import Button from 'primevue/button'
+  import InputText from 'primevue/inputtext'
+  import { useCartStore } from '../stores/cart';
+
+  const props = defineProps(['product'])
+  const store = useCartStore()
+</script>
+
 <template>
   <div class="grid flex-nowrap">
     <Button
       v-if="product.quantity == 1"
-      @click="store.removeProduct(product.id)"
+      @click="()=>{store.removeProduct(product.id); $emit('productRemoved')}"
       outlined
       severity="danger"
       size="small"
@@ -13,12 +22,3 @@
     <Button size="small" icon="pi pi-plus" @click="product.quantity++" />
   </div>
 </template>
-
-<script setup>
-  import Button from 'primevue/button'
-  import InputText from 'primevue/inputtext'
-  import { useCartStore } from '../stores/cart';
-
-  const props = defineProps(['product'])
-  const store = useCartStore()
-</script>

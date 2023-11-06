@@ -1,10 +1,18 @@
 <script setup>
-  import Card   from 'primevue/card'
-  import Button from 'primevue/button'
-  import InputText from 'primevue/inputtext'
   import { ref } from 'vue';
   import {useCartStore} from './../stores/cart'
   import { useRouter } from 'vue-router';
+  import { useToast } from "primevue/usetoast";
+
+  import Card   from 'primevue/card'
+  import Toast   from 'primevue/toast'
+  import Button from 'primevue/button'
+  import InputText from 'primevue/inputtext'
+  const toast = useToast();
+
+  const showSuccess = () => {
+    toast.add({ severity: 'success', summary: 'Listo', detail: 'Se agregó el producto al carrito', life: 3000 });
+  };
 
   const router   = useRouter()
   const store    = useCartStore();
@@ -12,6 +20,7 @@
   const quantity = ref(0)
 </script>
 <template>
+  <Toast/>
   <Card class="product-card">
     <template #header>
       <div class="flex">
@@ -49,7 +58,7 @@
         </div>
         <Button
           :disabled="!quantity"
-          @click="store.addProduct(product, quantity)"
+          @click="()=>{store.addProduct(product, quantity); showSuccess()}"
           label="Add to cart"
           class="w-full"
           icon="pi pi-shopping-cart">

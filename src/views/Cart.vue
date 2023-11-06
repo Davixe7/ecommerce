@@ -1,6 +1,5 @@
 <script setup>
 import { useCartStore } from './../stores/cart';
-
 import Button              from 'primevue/button'
 import Column              from 'primevue/column'
 import ColumnGroup         from 'primevue/columngroup'
@@ -8,12 +7,20 @@ import Row                 from 'primevue/row'
 import DataTable           from 'primevue/datatable'
 import CartProductControls from '../components/CartProductControls.vue'
 
+import { useToast } from 'primevue/usetoast';
+import Toast        from 'primevue/toast';
+const toast = useToast();
+const showSuccess = () => {
+  toast.add({ severity: 'success', summary: 'Listo', detail: 'Se eliminó el producto del carrito', life: 3000 });
+};
+
 const store          = useCartStore()
 const formatCurrency = value => value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 </script>
 
 <template>
   <div>
+    <Toast/>
     <div
       v-if="!store.cart.length"
       class="flex flex-column justify-content-center align-items-center">
@@ -50,7 +57,7 @@ const formatCurrency = value => value.toLocaleString('en-US', { style: 'currency
 
       <Column field="quantity" header="QTY">
         <template #body="slotProps">
-          <CartProductControls :product="slotProps.data"/>
+          <CartProductControls :product="slotProps.data" @productRemoved="showSuccess()"/>
         </template>
       </Column>
 
